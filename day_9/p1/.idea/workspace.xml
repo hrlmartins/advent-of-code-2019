@@ -4,9 +4,11 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2619f1aa-83e7-4b94-97de-f4878c3afe91" name="Default Changelist" comment="">
+    <list default="true" id="b0ad2970-1d01-4cd3-b6cc-9c3bf7a822ab" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../day_5/p2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_5/p2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../day_7/p2/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_7/p2/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_8/p2/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_8/p2/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_8/p2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_8/p2/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,9 +19,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="MacroExpansionManager">
-    <option name="directoryName" value="RjutLnoL" />
+    <option name="directoryName" value="KLmGBWhF" />
   </component>
-  <component name="ProjectId" id="1UhCbz45sIX62f9verMWhFppp4J" />
+  <component name="ProjectId" id="1UlNo0FCyrMpaUd8fUZjUhUNIZb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -27,12 +29,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Cargo.toml" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../p2/Cargo.toml" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="/usr/bin" />
-    <option name="version" value="2" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -51,35 +53,26 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2619f1aa-83e7-4b94-97de-f4878c3afe91" name="Default Changelist" comment="" />
-      <created>1575799515259</created>
+      <changelist id="b0ad2970-1d01-4cd3-b6cc-9c3bf7a822ab" name="Default Changelist" comment="" />
+      <created>1575927392853</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1575799515259</updated>
+      <updated>1575927392853</updated>
     </task>
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="WindowStateProjectService">
-    <state x="963" y="459" width="624" height="554" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1575927153262">
+    <state x="999" y="538" width="552" height="405" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575933187806">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="963" y="459" width="624" height="554" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575927153262" />
-    <state x="940" y="560" key="com.intellij.ide.util.TipDialog" timestamp="1575927167339">
+    <state x="999" y="538" width="552" height="405" key="#com.intellij.fileTypes.FileTypeChooser/0.27.2560.1413@0.27.2560.1413" timestamp="1575933187806" />
+    <state x="1063" y="491" width="424" height="491" key="FileChooserDialogImpl" timestamp="1575934376918">
       <screen x="0" y="27" width="2560" height="1413" />
     </state>
-    <state x="940" y="560" key="com.intellij.ide.util.TipDialog/0.27.2560.1413@0.27.2560.1413" timestamp="1575927167339" />
+    <state x="1063" y="491" width="424" height="491" key="FileChooserDialogImpl/0.27.2560.1413@0.27.2560.1413" timestamp="1575934376918" />
+    <state x="943" y="349" key="search.everywhere.popup" timestamp="1575931467171">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state x="943" y="349" key="search.everywhere.popup/0.27.2560.1413@0.27.2560.1413" timestamp="1575931467171" />
   </component>
 </project>
