@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CargoProjects">
+    <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5592a62a-79a2-4ab6-b9c1-c7ed756b3d34" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../day_9/p1/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_9/p1/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_9/p1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_9/p1/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="KJUHjFgY" />
+  </component>
+  <component name="ProjectId" id="1Uo0WkzL3dYPwI8bvn0YZqcr6l3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Cargo.toml" />
+    <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
+  </component>
+  <component name="RustProjectSettings">
+    <option name="toolchainHomeDirectory" value="/usr/bin" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5592a62a-79a2-4ab6-b9c1-c7ed756b3d34" name="Default Changelist" comment="" />
+      <created>1576007674464</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576007674464</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="999" y="538" width="551" height="405" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1576015266718">
+      <screen x="0" y="27" width="2560" height="1413" />
+    </state>
+    <state x="999" y="538" width="551" height="405" key="#com.intellij.fileTypes.FileTypeChooser/0.27.2560.1413@0.27.2560.1413" timestamp="1576015266718" />
+  </component>
+</project>
