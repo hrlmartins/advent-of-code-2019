@@ -75,6 +75,7 @@ fn read_and_compute_by_line<T: Read>(reader: T) -> io::Result<()> {
 
     println!("Max possible sights is: {}", max_count);
 
+    // Point x: 29, y: 28
     Ok(())
 }
 
