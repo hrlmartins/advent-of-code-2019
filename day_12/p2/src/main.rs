@@ -1,7 +1,26 @@
 use std::io;
 use std::io::{Read, BufReader};
-use std::cell::{RefCell, Cell};
-use std::ptr::eq;
+use std::collections::HashSet;
+
+extern crate strum;
+#[macro_use] extern crate strum_macros;
+use strum::IntoEnumIterator;
+
+extern crate num_bigint;
+extern crate num_integer;
+
+use num_bigint::BigInt;
+use num_integer::Integer;
+
+extern crate num_traits;
+use num_traits::cast::ToPrimitive;
+
+#[derive(EnumIter,Debug)]
+enum Axis {
+    GravX,
+    GravY,
+    GravZ
+}
 
 #[derive(Copy, Clone, Debug)]
 struct Moon {
@@ -61,6 +80,11 @@ impl Simulation {
         moons.push(Moon::new((-9, 8, -16)));
         moons.push(Moon::new((-4, 5, -11)));
         moons.push(Moon::new((1, 9, -13)));
+//
+//        moons.push(Moon::new((-1, 0, 2)));
+//        moons.push(Moon::new((2, -10, -7)));
+//        moons.push(Moon::new((4, -8, 8)));
+//        moons.push(Moon::new((3, 5, -1)));
 
         Simulation {
             stars: moons
@@ -118,57 +142,107 @@ fn main() {
 }
 
 fn read_and_compute_by_line<T: Read>(reader: T) -> io::Result<()> {
-    let mut history = Vec::new();
     //meh this one is too annoying to parse
     let mut simulation = Simulation::new();
     println!("Initial state:");
     simulation.print();
 
-    let test = simulation.clone();
-    history.push(simulation.clone());
-
+    let original = simulation.clone();
     let count_moons = simulation.size();
 
     println!("End Initial State");
-    let mut i = 0;
-    loop {
-        // First step:
-        // Compare pair of moons apply gravity (changes each moon velocity)
-        for idx in 0..count_moons {
-            for pair_idx in 0..count_moons {
-                if pair_idx != idx {
-                    let other = simulation.get_moon(pair_idx).clone();
-                    simulation.apply_gravity(idx, other.gravity);
+    let mut lcm= BigInt::from(1);
+    for axis in Axis::iter() {
+        simulation = original.clone();
+        println!("====================== chaging TO axis {:?}===============\n", axis);
+        simulation.print();
+        println!("======================= CLONE END ========================");
+
+        let mut grav_repeat = HashSet::new();
+        let mut vel_repeat = HashSet::new();
+        fill_axis_hist(&mut grav_repeat, &mut vel_repeat,  &simulation, &axis);
+
+        let mut i = 0;
+        loop {
+            // for each axis in gravity and velocity look for frequency. Makes a total of 6 combinations
+            // First step:
+            // Compare pair of moons apply gravity (changes each moon velocity)
+            for idx in 0..count_moons {
+                for pair_idx in 0..count_moons {
+                    if pair_idx != idx {
+                        let other = simulation.get_moon(pair_idx).clone();
+                        simulation.apply_gravity(idx, other.gravity);
+                    }
                 }
             }
+
+            // After all gravities computed update each Moon position by adding the respective velocity
+            simulation.apply_velocity();
+
+            simulation.print();
+            println!("END STEP {}\n", i);
+            i += 1;
+
+            if repeats(&mut grav_repeat, &mut vel_repeat, &simulation, &axis) {
+                println!("Found repeat at iteration: {}", i);
+                // without counting the initial state... subtract 1
+
+
+
+                let freq = i;
+                println!("FREQUENCY!!!: {:?}", freq);
+                lcm = lcm.lcm(&BigInt::from(freq));
+                grav_repeat.clear();
+                break;
+            }
+
         }
 
-        // After all gravities computed update each Moon position by adding the respective velocity
-        simulation.apply_velocity();
-
-        if repeats(&history, &simulation) {
-            println!("Found repeat at iteration: {}", i);
-            break;
-        }
-
-        history.push(simulation.clone());
-        i += 1;
-        //simulation.print();
         // This is ONE step
-        //println!("END STEP {}\n", i);
     }
 
 
-    // After 1000 steps calculate total energy:
-    // TE = POT *  KE // FOR EACH MOON
-    //    POT = SUM(abs(grav(x, y, z)))
-    //    KE = SUM(abs(velo(x, y, z)))
-    // Result: Total energy in the system (Sum of all moons energies)
-    println!("Total system energy {}", simulation.total_energy());
+    // At this point you have LCM for every axis... output
+    println!("The number of moves until rep {}", lcm.to_i64().unwrap());
 
     Ok(())
 }
 
-fn repeats(hist: &Vec<Simulation>, sim: &Simulation) -> bool {
-    hist.iter().any(|hist_sim| hist_sim.are_equal(sim))
+fn repeats(grav_hist: &mut HashSet<(i32, i32, i32, i32)>, vel_hist: &mut HashSet<(i32, i32, i32, i32)>, sim: &Simulation, axis: &Axis) -> bool {
+    let (grav, vel) = match axis {
+        Axis::GravX => {
+            ((sim.get_moon(0).gravity.0, sim.get_moon(1).gravity.0, sim.get_moon(2).gravity.0, sim.get_moon(3).gravity.0),
+            (sim.get_moon(0).velocity.0, sim.get_moon(1).velocity.0, sim.get_moon(2).velocity.0, sim.get_moon(3).velocity.0))
+        },
+        Axis::GravY => {
+            ((sim.get_moon(0).gravity.1, sim.get_moon(1).gravity.1, sim.get_moon(2).gravity.1, sim.get_moon(3).gravity.1),
+            (sim.get_moon(0).velocity.1, sim.get_moon(1).velocity.1, sim.get_moon(2).velocity.1, sim.get_moon(3).velocity.1))
+        },
+        Axis::GravZ => {
+            ((sim.get_moon(0).gravity.2, sim.get_moon(1).gravity.2, sim.get_moon(2).gravity.2, sim.get_moon(3).gravity.2),
+            (sim.get_moon(0).velocity.2, sim.get_moon(1).velocity.2, sim.get_moon(2).velocity.2, sim.get_moon(3).velocity.2))
+        },
+    };
+
+    grav_hist.contains(&grav) && vel_hist.contains(&vel)
+}
+
+fn fill_axis_hist(grav_hist: &mut HashSet<(i32, i32, i32, i32)>, vel_hist: &mut HashSet<(i32, i32, i32, i32)>, sim: &Simulation, axis: &Axis) {
+    match axis {
+        Axis::GravX => {
+            let x = (sim.get_moon(0).gravity.0, sim.get_moon(1).gravity.0, sim.get_moon(2).gravity.0, sim.get_moon(3).gravity.0);
+            grav_hist.insert(x);
+            vel_hist.insert((0, 0, 0,0));
+        },
+        Axis::GravY => {
+            let x = (sim.get_moon(0).gravity.1, sim.get_moon(1).gravity.1, sim.get_moon(2).gravity.1, sim.get_moon(3).gravity.1);
+            grav_hist.insert(x);
+            vel_hist.insert((0, 0,0,0));
+        },
+        Axis::GravZ => {
+            let x = (sim.get_moon(0).gravity.2, sim.get_moon(1).gravity.2, sim.get_moon(2).gravity.2, sim.get_moon(3).gravity.2);
+            grav_hist.insert(x);
+            vel_hist.insert((0, 0,0,0));
+        },
+    }
 }

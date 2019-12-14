@@ -55,10 +55,10 @@ struct Simulation {
 impl Simulation {
     fn new() -> Simulation {
         let mut moons = Vec::new();
-        moons.push(Moon::new((-19, -4, 2)));
-        moons.push(Moon::new((-9, 8, -16)));
-        moons.push(Moon::new((-4, 5, -11)));
-        moons.push(Moon::new((1, 9, -13)));
+        moons.push(Moon::new((-1, 0, 2)));
+        moons.push(Moon::new((2, -10, -7)));
+        moons.push(Moon::new((4, -8, 8)));
+        moons.push(Moon::new((3, 5, -1)));
 
         Simulation {
             stars: moons
@@ -95,7 +95,7 @@ impl Simulation {
 
     fn print(&self) {
         for (idx, moon) in self.stars.iter().enumerate() {
-            println!("moon: {} - Gravity: {:?} ------ Velocity: {:?}", idx, moon.gravity, moon.velocity);
+            println!("moon: {} - Gravity: {:?} ------ Velocity: {:?} - {}", idx, moon.gravity.0, moon.velocity.0, moon.velocity.1);
         }
     }
 }
@@ -113,7 +113,8 @@ fn read_and_compute_by_line<T: Read>(reader: T) -> io::Result<()> {
     let count_moons = simulation.size();
 
     println!("End Initial State");
-    for i in 0..1000 {
+    let mut x = 0;
+    for i in 0..40 {
         // First step:
         // Compare pair of moons apply gravity (changes each moon velocity)
         for idx in 0..count_moons {
@@ -128,8 +129,8 @@ fn read_and_compute_by_line<T: Read>(reader: T) -> io::Result<()> {
         // After all gravities computed update each Moon position by adding the respective velocity
         simulation.apply_velocity();
         simulation.print();
-        // This is ONE step
-        println!("END STEP {}\n", i);
+        println!("END STEP {}\n", x);
+        x +=1;
     }
 
 
@@ -143,7 +144,7 @@ fn read_and_compute_by_line<T: Read>(reader: T) -> io::Result<()> {
     Ok(())
 }
 
-fn is_init_state(sim: &Simulation) -> boolA {
+fn is_init_state(sim: &Simulation) -> bool {
     let g1 = (-19, -4, 2);
     let g2 = (-9, 8, -16);
     let g3 = (-4, 5, -11);
